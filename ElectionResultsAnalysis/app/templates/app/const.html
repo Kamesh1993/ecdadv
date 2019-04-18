@@ -1,0 +1,174 @@
+﻿{% extends "app/layout.html" %}
+
+{% block content %}
+    <!DOCTYPE html>
+    <html lang='en'>
+        <head>
+            <meta charset='utf-8'/>
+     <link rel='icon' href='images/fav.png'/>
+     <title>Election Analysis</title>
+     <link href='../../static/app/content/site.css' rel='stylesheet'/>
+     <meta http-equiv='Content-type' content='text/html;charset=utf-8'>
+     <meta name='viewport' content='width=device-width, initial-scale=1'>
+     <!-- Carousel Links Start -->
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+     <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css'>
+     <script src='https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js'></script>
+     <script src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js'></script>
+    <script type='text/javascript' src='../../static/app/scripts/ruby.js'></script>
+    <script type="text/javascript" src="../../static/app/scripts/trendcomparision.js"></script>
+    
+     <!-- Carousel Links End -->
+        </head>
+    <body>
+    <script>
+    function plotgraph()
+    {
+        var list1 = document.getElementById('dropdown');
+        var list2 = document.getElementById('dropdown1');
+        if(list1.value==='Chattisgarh')
+        {
+		   var list =["--Select Constituency--","Abhanpur","Ahiwara","Akaltara","Arang","Basna","Bastar","Bijapur","Beltara","Bilha","Durg City"]        
+           for(var i=0;i<list.length;i++)
+           {
+              var select = document.getElementById("constituency1");
+              select.options[select.options.length] = new Option(list[i],list[i]);
+           }
+        }
+        else if (list1.value==='Telangana')
+        {
+             var list =["--Select Constituency--","Aliar","Armur","Boath","Chennur","Chevella","Dubbak","Gadwal","Jagtial","Jukkal","Mulug"]
+             for(var i=0;i<list.length;i++)
+             {
+               var select = document.getElementById("constituency1");
+               select.options[select.options.length] = new Option(list[i],list[i]);
+             }
+        }
+	    else if (list1.value==='Mizoram')
+        {
+                var list =["--Select Constituency--","Aizawl North-i","Aizawl North-ii","Aizawl North-iii","Aizawl East-i","Aizawl East-ii","Aizawl South-i","Aizawl South-ii","Aizawl South-iii","Aizawl West-i","Aizawl West-ii","Aizawl West-iii"]
+                for(var i=0;i<list.length;i++)
+                {
+                 var select = document.getElementById("constituency1");
+                 select.options[select.options.length] = new Option(list[i],list[i]);
+                }
+        }
+		else if (list1.value==='Rajasthan')
+        {
+                var list =["--Select Constituency--","Ahore","Amber","Anta","Asind","Bali","Bagru","Bansur","Bari","Bassi","Bhim"]
+                for(var i=0;i<list.length;i++)
+                {
+                 var select = document.getElementById("constituency1");
+                 select.options[select.options.length] = new Option(list[i],list[i]);
+                }
+        }
+	    else if (list1.value==='MadhyaPradesh')
+        {
+                var list =["--Select Constituency--","AGAR","ALOTE","AMLA","ASHTA","ATER","BAGLI","BAIHAR","BANDA","BARGI","BETUL"]
+                for(var i=0;i<list.length;i++)
+                {
+                 var select = document.getElementById("constituency1");
+                 select.options[select.options.length] = new Option(list[i],list[i]);
+                }
+               
+        }
+}
+    let myChart = document.getElementById('myChart').getContext('2d');
+
+    // Global Options
+    Chart.defaults.global.defaultFontFamily = 'Lato';
+    Chart.defaults.global.defaultFontSize = 18;
+    Chart.defaults.global.defaultFontColor = '#777';
+
+    let massPopChart = new Chart(myChart, {
+      type:'bar', // bar, horizontalBar, pie, line, doughnut, radar, polarArea
+      data:{
+        labels:['BSP', 'BJP', 'INC', 'JCC (J)'],
+        datasets:[{
+          label:'Partywise Trends',
+          data:[
+            2,
+            15,
+            68,
+            5
+          ],
+          //backgroundColor:'green',
+          backgroundColor:[
+            'rgba(255, 99, 132, 0.6)',
+            'rgba(54, 162, 235, 0.6)',
+            'rgba(255, 206, 86, 0.6)',
+            'rgba(75, 192, 192, 0.6)',
+            'rgba(153, 102, 255, 0.6)',
+            'rgba(255, 159, 64, 0.6)',
+            'rgba(255, 99, 132, 0.6)'
+          ],
+          borderWidth:1,
+          borderColor:'#777',
+          hoverBorderWidth:3,
+          hoverBorderColor:'#000'
+        }]
+      },
+      options:{
+        title:{
+          display:true,
+          text:'Partywise trends for Chattisgarh',
+          fontSize:25
+        },
+        legend:{
+          display:true,
+          position:'right',
+          labels:{
+            fontColor:'#000'
+          }
+        },
+        layout:{
+          padding:{
+            left:50,
+            right:0,
+            bottom:0,
+            top:0
+          }
+        },
+        tooltips:{
+          enabled:true
+        }
+      }
+    });
+  </script>
+
+    <div id='header'>
+    	<div id='logo'>
+    	<a href='index.html'></a>
+    	</div>
+    </div>
+    <div class='clear'></div>
+    <div id='bg'>
+    <br>
+<center>
+<div id="state">
+<b>Please Select the State and Constituency</b>
+        &nbsp;
+		<br><br>
+       <form method="POST" action="/const" onsubmit="return checkState() && checkConstituency() && plotgraph()">
+           <select name="dropdown" style="width: 250px; height: 30px; color:black; font-weight:bold; background:lightgray;"      id="state1" onchange="update()">
+        </select>
+		   <select name="dropdown1" style="width: 250px; height: 30px; color:black; font-weight:bold; background:lightgray;"      id="constituency1" >
+        </select>
+		   <br>
+		   <br>
+           <p><input type="submit" name="submitname" value="Submit"/></p>
+       </form>
+</div>
+</center>
+<br>
+<div id='footer'>
+	<center><p>&copy Designed by RUBY</p></center>
+</div>
+</div>
+
+
+    </body>
+</html>
+
+
+{% endblock %}

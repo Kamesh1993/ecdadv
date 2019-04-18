@@ -1,0 +1,24 @@
+﻿{% extends "app/layout.html" %}
+
+{% block content %}
+
+<div class="row">
+    <center>
+        <div id="state">
+            <b>Please Select  State</b>
+            &nbsp;
+            <br><br>
+                <form method="POST" action="/trend" onsubmit="return checkState()">
+                    {% csrf_token %}
+                    <select name="dropdown" style="width: 250px; height: 30px; color:black; font-weight:bold; background:lightgray;" id="state1" onchange="update()">
+                    </select>
+                    <br>
+                    <br>
+                    <p><input type="submit" name="submitname" value="Submit" /></p>
+
+                </form>
+        </div>
+    </center>
+</div>
+
+{% endblock %}

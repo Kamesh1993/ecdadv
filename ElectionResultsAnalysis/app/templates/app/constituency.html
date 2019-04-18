@@ -1,0 +1,54 @@
+﻿{% extends "app/layout.html" %}
+
+{% block content %}
+    <!DOCTYPE html>
+    <html lang='en'>
+        <head>
+            <meta charset='utf-8'/>
+     <link rel='icon' href='images/fav.png'/>
+     <title>Election Analysis</title>
+     <link href='../../static/app/content/site.css' rel='stylesheet'/>
+     <meta http-equiv='Content-type' content='text/html;charset=utf-8'>
+     <meta name='viewport' content='width=device-width, initial-scale=1'>
+     <!-- Carousel Links Start -->
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+     <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css'>
+     <script src='https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js'></script>
+     <script src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js'></script>
+    <script type='text/javascript' src='../../static/app/scripts/ruby.js'></script>
+    <script type="text/javascript" src="../../static/app/scripts/trendcomparision.js"></script>
+    
+     <!-- Carousel Links End -->
+        </head>
+    <body>
+
+
+    <div id='header'>
+    	<div id='logo'>
+    	<a href='index.html'></a>
+    	</div>
+    </div>
+    <div class='clear'></div>
+    <div id='bg'>
+    <br>
+<center>
+
+    <p><h2>Constituencywise trends for {{state}} and {{const}} constituency</h2></p>
+        <p><a href="/const" class="btn btn-primary btn-large">Back</a></p>
+
+    <div id="graph">
+        <img src='../../static/plots/graph.png'>
+    </div>
+</center>
+<br>
+<div id='footer'>
+	<center><p>&copy Designed by RUBY</p></center>
+</div>
+</div>
+
+
+    </body>
+</html>
+
+
+{% endblock %}
